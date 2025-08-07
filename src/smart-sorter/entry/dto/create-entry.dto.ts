@@ -1,5 +1,5 @@
 // src/smart-sorter/entry/dto/create-entry.dto.ts
-import { IsString, IsInt, Min } from 'class-validator';
+import { IsString, IsInt, Min, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateSmartSorterEntryDto {
@@ -20,7 +20,7 @@ export class CreateSmartSorterEntryDto {
   @Min(0)
   count: number;
 
-  @IsInt()
+  @IsNumber()
   @Type(() => Number)
   @Min(0)
   uniformity: number;

@@ -16,7 +16,7 @@ export class SmartSorterEntry {
   @Column({ type: 'int' })
   count: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'double precision' })
   uniformity: number;
 
   @ManyToOne(() => SmartSorterReport, report => report.entries, { onDelete: 'CASCADE' })
