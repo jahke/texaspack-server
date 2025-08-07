@@ -13,9 +13,14 @@ export class SectionService {
   ) {}
 
   create(dto: CreateSectionDto) {
-    const ent = this.repo.create(dto);
-    return this.repo.save(ent);
-  }
+  const section = this.repo.create({
+    sectionName: dto.sectionName,
+    time: dto.time,
+    // explicitly set the relation here:
+    report: { id: dto.reportId },
+  });
+  return this.repo.save(section);
+}
 
   findAll() {
     return this.repo.find();
@@ -33,7 +38,7 @@ export class SectionService {
     return this.repo.delete(id);
   }
 
-  // ★ new helper to filter by reportId
+  // new helper to filter by reportId
   findByReportId(reportId: number) {
     return this.repo.find({
       where: { report: { id: reportId } },
